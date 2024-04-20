@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\ADMIN\\Desktop\\web3_project\\local_chain\\contracts\\Greeter.sol": {
-      "lastModificationDate": 1713454931678,
-      "contentHash": "b107c755a0290f5f101ff528e4290fc8",
+      "lastModificationDate": 1713593547712,
+      "contentHash": "e5455d648bf4ad427130700e8dd23911",
       "sourceName": "contracts/Greeter.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -28,9 +28,7 @@
           }
         }
       },
-      "imports": [
-        "hardhat/console.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],

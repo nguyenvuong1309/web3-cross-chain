@@ -1,32 +1,33 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// When running the script with `npx hardhat run <script>` you'll find the Hardhat
-// Runtime Environment's members available in the global scope.
-const hre = require("hardhat");
+const { ethers } = require('ethers');
+const fs = require('fs');
+const path = require('path');
+
+
+const json = fs.readFileSync(path.resolve(__dirname, '../artifacts/contracts/Greeter.sol/Greeter.json'), 'utf8');
+const artifact = JSON.parse(json);
+
+const abi = artifact.abi;
+const bytecode = artifact.bytecode;
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+    const provider = new ethers.providers.JsonRpcProvider('http://localhost:8500/1');
+    const wallet = new ethers.Wallet('0x6ba91baa35401e9b5a28e9453d7d287791d658281a0f8c463934d2d4ed36bc32', provider);
 
-  // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+    // Greeter compiled contract ABI and Bytecode
+    // const abi = [/* ABI from your compiled contract */];
+    // const bytecode = '/* Bytecode from your compiled contract */';
+    // const abi = [/* ABI from your compiled contract */];
+    // const bytecode = '/* Bytecode from your compiled contract */';
 
-  await greeter.deployed();
+    const GreeterFactory = new ethers.ContractFactory(abi, bytecode, wallet);
+    const greeter = await GreeterFactory.deploy('Hello, world!');
 
-  console.log("Greeter deployed to:", greeter.address);
+    await greeter.deployed();
+
+    console.log('Greeter deployed to:', greeter.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
+main().catch((error) => {
     console.error(error);
-    process.exit(1);
-  });
+    process.exitCode = 1;
+});
