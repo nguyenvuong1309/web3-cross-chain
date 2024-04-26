@@ -70,6 +70,112 @@
       "artifacts": [
         "console"
       ]
+    },
+    "C:\\Users\\ADMIN\\Desktop\\web3_project\\local_chain\\contracts\\SendTransaction.sol": {
+      "lastModificationDate": 1713599082618,
+      "contentHash": "b9b5ee1b8636e9c52f66a4fa20332b2c",
+      "sourceName": "contracts/SendTransaction.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SendTransaction"
+      ]
+    },
+    "C:\\Users\\ADMIN\\Desktop\\web3_project\\local_chain\\contracts\\SendToken.sol": {
+      "lastModificationDate": 1713617596211,
+      "contentHash": "b9b5ee1b8636e9c52f66a4fa20332b2c",
+      "sourceName": "contracts/SendToken.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SendTransaction"
+      ]
+    },
+    "C:\\Users\\ADMIN\\Desktop\\web3_project\\local_chain\\contracts\\ERC20Token.sol": {
+      "lastModificationDate": 1713625131247,
+      "contentHash": "f69a8fbd2556a59d15d40841863e408b",
+      "sourceName": "contracts/ERC20Token.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20",
+        "TokenTransfer"
+      ]
     }
   }
 }
