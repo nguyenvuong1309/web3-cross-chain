@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+# Axelar cross-chain dApp examples
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+This repo provides the code for several example dApps in the [Axelar Local Development Environment](https://github.com/axelarnetwork/axelar-local-dev). Examples contain both JavaScript and Solidity smart contract code.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Note:** Some example folders in this repo are not documented.
 
-## Expanding the ESLint configuration
+## One-time setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Install [nodejs](https://nodejs.org/en/download/). Run `node -v` to check your installation.
 
-- Configure the top-level `parserOptions` property like this:
+Support Node.js version 16.x and 18.x
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Clone this repo:
+
+```bash
+git clone https://github.com/axelarnetwork/axelar-examples.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to `axelar-examples` and install dependencies:
+
+```bash
+npm install
+```
+
+3. Compile smart contracts:
+
+```bash
+npm run build
+```
+
+## Set environment variables
+
+You can get started quickly with a random local key and `.env` file by running
+
+```bash
+npm run setup
+```
+
+Or you can manually copy the example `.env.example` file and fill in your EVM private key. See the [example Metamask Instructions](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) for exporting your private keys.
+
+```bash
+cp .env.example .env
+```
+
+Then update to your own private key.
+
+## Running the local chains
+
+```bash
+npm run start
+```
+
+Leave this node running on a separate terminal before deploying and testing the dApps.
+
+## Print wallet balances
+
+This script will print your wallet balances for each chain.
+
+```bash
+npm run check-balance [local|testnet]
+```
+
+If not specified, this will print balances of the wallet for testnet.
+
+## Examples
+
+-   [Evm Examples](/examples/evm/)
+-   [Cosmos Examples](/examples/cosmos/)
+-   [MultiversX Examples](/examples/multiversx/)
+-   [Web Examples](/examples-web/)
