@@ -2,13 +2,10 @@ import cn from "classnames";
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import {
+  sendMessageToAvalanche,
   getAvalancheMessage,
   getAvalancheSourceChain,
-  sendMessageToAvalancheDemo,
-  getAvalancheMessageDemo,
-  getAvalancheSourceChainDemo,
-  getAvalancheAddressChainDemo,
-  main,
+  sendMessageCrossChain,
 } from "helpers";
 
 const CallContract: NextPage = () => {
@@ -16,14 +13,14 @@ const CallContract: NextPage = () => {
   const [sourceChain, setSourceChain] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  async function handleOnSubmitMessageDemo(
-    e: React.FormEvent<HTMLFormElement>
-  ) {
+  async function handleOnSubmitMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    await sendMessageCrossChain();
+    return;
 
     const formData = new FormData(e.currentTarget);
     setLoading(true);
-    await sendMessageToAvalancheDemo(formData.get("message") as string).finally(
+    await sendMessageToAvalanche(formData.get("message") as string).finally(
       () => {
         setLoading(false);
       }
@@ -40,21 +37,8 @@ const CallContract: NextPage = () => {
     setSourceChain(_sourceChain);
   }
 
-  async function handleOnGetMessageDemo() {
-    const _msg = await getAvalancheMessageDemo();
-    const _sourceChain = await getAvalancheSourceChainDemo();
-    const _adressChain = await getAvalancheAddressChainDemo();
-    setMsg(_msg);
-    setSourceChain(_sourceChain + "\n" + _adressChain);
-  }
-
-  async function sendMessageSameChain() {
-    main();
-  }
-
   return (
     <div>
-      {/* DEMO */}
       <div>
         <h1 className="text-4xl font-medium text-center">
           Send message to another chain
@@ -74,7 +58,7 @@ const CallContract: NextPage = () => {
                 <form
                   className="flex w-full"
                   autoComplete="off"
-                  onSubmit={handleOnSubmitMessageDemo}
+                  onSubmit={handleOnSubmitMessage}
                 >
                   <input
                     disabled={loading}
@@ -106,96 +90,6 @@ const CallContract: NextPage = () => {
             />
             <div className="card-body">
               <h2 className="card-title">Avalanche (Message Receiver)</h2>
-              <div>
-                <div className="w-full max-w-xs form-control">
-                  <label className="label">
-                    <span className="label-text">Message</span>
-                  </label>
-                  <input
-                    readOnly
-                    type="text"
-                    placeholder="Type here"
-                    className="w-full max-w-xs input input-bordered"
-                    value={msg}
-                  />
-                </div>
-                <div className="w-full max-w-xs form-control">
-                  <label className="label">
-                    <span className="label-text">Source Chain</span>
-                  </label>
-                  <input
-                    readOnly
-                    type="text"
-                    placeholder="Type here"
-                    className="w-full max-w-xs input input-bordered"
-                    value={sourceChain}
-                  />
-                </div>
-              </div>
-              <div
-                className="justify-end mt-5 card-actions"
-                onClick={handleOnGetMessageDemo}
-              >
-                <button className="btn btn-primary">Refresh Contract</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h1 className="text-4xl font-medium text-center">
-          Send message to same chain
-        </h1>
-
-        <div className="grid grid-cols-2 gap-20 mt-20 justify-items-center">
-          {/* ETHEREUM CARD */}
-          <div className="row-span-1 shadow-xl card w-96 bg-base-100">
-            <figure
-              className="h-64 bg-center bg-no-repeat bg-cover image-full"
-              style={{ backgroundImage: "url('/assets/ethereum.gif')" }}
-            />
-            <div className="card-body">
-              <h2 className="card-title">Ethereum (Message Sender)</h2>
-              <p>Send a cross-chain message</p>
-              <div className="justify-end mt-10 card-actions">
-                <form className="flex w-full" autoComplete="off">
-                  <input
-                    disabled={loading}
-                    required
-                    minLength={3}
-                    name="message"
-                    type="text"
-                    placeholder="Enter your message"
-                    className="w-full max-w-xs input input-bordered"
-                  />
-                  {/* <button
-                    className={cn("btn btn-primary ml-2", {
-                      loading,
-                    })}
-                    type="submit"
-                  >
-                    Send
-                  </button> */}
-                  <div
-                    className="w-20 max-w-xs bg-slate-600"
-                    onClick={sendMessageSameChain}
-                  >
-                    Send
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          {/* ETHEREUM CARD */}
-          <div className="row-span-2 shadow-xl card w-96 bg-base-100">
-            <figure
-              className="h-64 bg-center bg-no-repeat bg-cover image-full"
-              style={{ backgroundImage: "url('/assets/ethereum.gif')" }}
-            />
-            <div className="card-body">
-              <h2 className="card-title">Ethereum (Message Sender)</h2>
               <div>
                 <div className="w-full max-w-xs form-control">
                   <label className="label">

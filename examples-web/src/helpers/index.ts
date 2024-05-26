@@ -9,3 +9,4 @@ export * from "./sendMessageSameChain";
 export * from "./NFT-samechain";
 export * from "./marketplace-samechain";
 export * from "./erc20-token-crosschain";
+export * from "./sendMessageCrossChain";

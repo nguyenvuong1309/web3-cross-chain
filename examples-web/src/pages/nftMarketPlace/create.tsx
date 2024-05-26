@@ -2,10 +2,15 @@
 import { create as ipfsHttpClient } from "ipfs-http-client";
 import { useState } from "react";
 import { ethers } from "ethers";
-import { mintNFT, approveNFTtoMarket, listNFT, getNFT } from "helpers";
+import {
+  mintNFT,
+  approveNFTtoMarket,
+  listNFT,
+  getNFT,
+  transferTokens,
+} from "helpers";
 import { Button, Image } from "@chakra-ui/react";
 import { NFTGlobalContext } from "context/NFTcontext";
-import { transferTokens } from "../../../scripts/erc20-token-crosschain/erc20-transfer";
 
 console.log("process.emv", process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY);
 
