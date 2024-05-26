@@ -5,7 +5,7 @@ const path = require("path");
 const json = fs.readFileSync(
   path.resolve(
     __dirname,
-    "../../artifacts/contracts/ERC20-Token/ERC20Token.sol/ERC20Token.json"
+    "../../artifacts/contracts/marketplace-samechain/Marketplace.sol/Marketplace.json"
   ),
   "utf8"
 );
@@ -18,12 +18,13 @@ const bytecode = artifact.bytecode;
 export async function deploy() {
   // Set up the provider to connect to your local blockchain
   const provider = new ethers.providers.JsonRpcProvider(
-    "http://localhost:8500/3"
+    process.env.NEXT_PUBLIC_FANTOM_RPC || "http://localhost:8500/3"
   );
 
   // Your account to deploy the contract
   const deployerPrivateKey =
-    "0x6ba91baa35401e9b5a28e9453d7d287791d658281a0f8c463934d2d4ed36bc32";
+    process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY ||
+    "0x4ffdc0494d84e044a8065e7aeb0476d7cde6aef2bcff6bbf2d0824877a7cefd4";
   const deployerWallet = new ethers.Wallet(deployerPrivateKey, provider);
 
   // Funding account with sufficient balance
@@ -59,17 +60,18 @@ export async function deploy() {
     bytecode,
     deployerWallet
   );
-  const sendTransaction = await SendTransaction.deploy();
+  const feePercent = 3;
+  const sendTransaction = await SendTransaction.deploy(feePercent);
   await sendTransaction.deployed();
 
-  console.log("ERC20Token deployed to:", sendTransaction.address);
+  console.log("NFT marketplace deployed to:", sendTransaction.address);
   saveAddressToEnv(sendTransaction.address);
   return sendTransaction;
 }
 
 function saveAddressToEnv(address: any) {
-  const envPath = path.resolve(__dirname, "../.env");
-  const key = "ERC20_TOKEN_SAME_CHAIN_CONTRACT_ADDRESS";
+  const envPath = path.resolve(__dirname, "../../.env");
+  const key = "NEXT_PUBLIC_NFT_MARKETPLACE_SAME_CHAIN_CONTRACT_ADDRESS";
   let updated = false;
 
   // Read the current .env file content
@@ -94,5 +96,5 @@ function saveAddressToEnv(address: any) {
 
   // Join the lines back into a single string and write back to the file
   fs.writeFileSync(envPath, lines.join("\n"), "utf8");
-  console.log(`ERC20Token address saved to .env file: ${address}`);
+  console.log(`NFT marketplace address saved to .env file: ${address}`);
 }

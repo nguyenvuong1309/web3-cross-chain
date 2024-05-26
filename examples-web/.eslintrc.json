@@ -1,6 +1,11 @@
 {
   "extends": "next/core-web-vitals",
+  "ignorePatterns": ["**/*"],
+  "root": true,
   "rules": {
-    "comma-dangle": ["never"]
+    "semi": ["error", "always"],
+    "comma-dangle": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off"
   }
 }

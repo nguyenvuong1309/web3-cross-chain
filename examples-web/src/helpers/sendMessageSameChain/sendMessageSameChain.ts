@@ -1,11 +1,11 @@
 const { ethers } = require("ethers");
 import { addressContractSendMessageSameChain } from "config/constants";
-import { MessageContract__factory as SingleChainMessagefactory } from "../../../src/types/factories/contracts/sendMessageSameChain.sol";
+import { Messaging__factory as sendMessageSameChain } from "../../../src/types/factories/contracts/sendMessageSameChain/sendMessageSameChain.sol";
 
-const abi = SingleChainMessagefactory.abi;
+const abi = sendMessageSameChain.abi;
 const contractAddress =
   addressContractSendMessageSameChain ||
-  "0x34AE22DCe95B21b7aB0d87520Ef85824F9A8913a";
+  "0x1A9aa87a6149c1864C62F09A404E016E6E70385D";
 
 const provider = new ethers.providers.JsonRpcProvider(
   "http://localhost:8500/3"
@@ -18,6 +18,8 @@ const wallet = new ethers.Wallet(privateKey, provider);
 const fundingAccountPrivateKey =
   "0x4ffdc0494d84e044a8065e7aeb0476d7cde6aef2bcff6bbf2d0824877a7cefd4"; // Replace with your funding account private key
 const fundingWallet = new ethers.Wallet(fundingAccountPrivateKey, provider);
+
+
 
 export async function main() {
   console.log("🚀 ~ main ~ wallet:", addressContractSendMessageSameChain);
@@ -63,4 +65,33 @@ async function interactWithContract(contract: any) {
   } catch (error) {
     console.error("Error sending message:", error);
   }
+}
+
+export async function sendMessage(to: string, content: string): Promise<void> {
+  const txResponse = await fundingWallet.sendTransaction({
+    to: wallet.address,
+    value: 1000000000000,
+  });
+  await txResponse.wait();
+
+  const contract = new ethers.Contract(contractAddress, abi, wallet);
+  const tx = await contract.sendMessage(to, content, {
+    gasLimit: 1000000,
+  });
+  await tx.wait();
+  console.log('Message sent:', tx);
+}
+
+// Function to get messages sent to a specific address
+export async function getMessages(to: string): Promise<void> {
+  const contract = new ethers.Contract(contractAddress, abi, wallet);
+  const messages = await contract.getMessages(to);
+  return messages
+}
+
+// Function to get messages sent from a specific address
+export async function getMessagesFrom(from: string): Promise<void> {
+  const contract = new ethers.Contract(contractAddress, abi, wallet);
+  const messages = await contract.getMessagesFrom(from);
+  return messages
 }

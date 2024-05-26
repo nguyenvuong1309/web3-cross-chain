@@ -2,7 +2,6 @@ import cn from "classnames";
 import type { NextPage } from "next";
 import React, { useState } from "react";
 import {
-  sendMessageToAvalanche,
   getAvalancheMessage,
   getAvalancheSourceChain,
   sendMessageToAvalancheDemo,
@@ -11,24 +10,11 @@ import {
   getAvalancheAddressChainDemo,
   main,
 } from "helpers";
-import { error } from "console";
 
 const CallContract: NextPage = () => {
   const [msg, setMsg] = useState<string>("");
   const [sourceChain, setSourceChain] = useState<string>("");
   const [loading, setLoading] = useState(false);
-
-  async function handleOnSubmitMessage(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    setLoading(true);
-    await sendMessageToAvalanche(formData.get("message") as string).finally(
-      () => {
-        setLoading(false);
-      }
-    );
-  }
 
   async function handleOnSubmitMessageDemo(
     e: React.FormEvent<HTMLFormElement>
@@ -173,11 +159,7 @@ const CallContract: NextPage = () => {
               <h2 className="card-title">Ethereum (Message Sender)</h2>
               <p>Send a cross-chain message</p>
               <div className="justify-end mt-10 card-actions">
-                <form
-                  className="flex w-full"
-                  autoComplete="off"
-                  //onSubmit={sendMessageSameChain}
-                >
+                <form className="flex w-full" autoComplete="off">
                   <input
                     disabled={loading}
                     required

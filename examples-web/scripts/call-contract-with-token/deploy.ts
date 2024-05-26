@@ -16,7 +16,9 @@ export async function deploy(wallet: Wallet, chainA: any, chainB: any) {
   const callContractWithTokenDest = await callContractWithTokenDestFactory.deploy(chainB.gateway, chainB.gasService)
 
   chainA.callContractWithToken = callContractWithTokenSrc.address;
+  console.log("🚀 ~ deploy ~ callContractWithTokenSrc.address:", callContractWithTokenSrc.address)
   chainB.callContractWithToken = callContractWithTokenDest.address;
+  console.log("🚀 ~ deploy ~ callContractWithTokenDest.address:", callContractWithTokenDest.address)
 
   return [chainA, chainB]
 }

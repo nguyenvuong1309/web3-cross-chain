@@ -24,11 +24,11 @@ const testnetChains = Object.entries(testnetInfo).map(([, value]) => {
 export const chains = isTestnet ? testnetChains : localChains;
 
 export const srcChain = chains.find(
-  (chain: any) => chain.name === "Ethereum"
+  (chain: any) => chain.name === "Fantom"
 ) as any;
 
 export const destChain = chains.find(
-  (chain: any) => chain.name === "Avalanche"
+  (chain: any) => chain.name === "Moonbeam"
 ) as any;
 
 const useMetamask = false;

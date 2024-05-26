@@ -1,12 +1,15 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Layout } from "../components/layout";
+import { NFTContractInstanceProvider } from "context/NFTcontext";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   return (
-    <Layout>
+    <NFTContractInstanceProvider>
+      <Layout>
         <Component {...pageProps} />
-    </Layout>
+      </Layout>
+    </NFTContractInstanceProvider>
   );
 }
 

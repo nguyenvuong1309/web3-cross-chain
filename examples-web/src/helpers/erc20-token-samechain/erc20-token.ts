@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { ERC20Token__factory as ERC20Tokenfactory } from "../../../src/types/factories/contracts/ERC20-Token";
+import { ERC20Token__factory as ERC20Tokenfactory } from "../../../src/types/factories/contracts/ERC20-Token-samechain";
 
 // Connection to a local Ganache blockchain
 const provider = new ethers.providers.JsonRpcProvider(
@@ -20,9 +20,9 @@ const contractABI = ERC20Tokenfactory.abi;
 const contractAddress = "0x0Aa420284A367D7acaD94f9C1fa47D2844841740";
 
 // Creating a new contract instance
-const contract = new ethers.Contract(contractAddress, contractABI, wallet);
+// const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
-export async function sendERC20Tokens(to: any, amount: any) {
+export async function sendERC20Tokens(contract: any, to: any, amount: any) {
   const tx = {
     to: wallet.address,
     value: 1000000000000, // Transfer the difference to meet the minimum balance
@@ -31,7 +31,6 @@ export async function sendERC20Tokens(to: any, amount: any) {
   const txResponse = await fundingWallet.sendTransaction(tx);
   await txResponse.wait();
   console.log("🚀 ~ funding success");
-  // Sending tokens using the `transfer` function of the ERC-20 contract
   try {
     const tx = await contract.transfer(to, amount, {
       gasLimit: 1000000,
@@ -43,7 +42,7 @@ export async function sendERC20Tokens(to: any, amount: any) {
   }
 }
 
-export async function getBalanceERC20Token(address: any) {
+export async function getBalanceERC20Token(contract: any, address: any) {
   // Querying the balance
   const balance = await contract.balanceOf(address);
   console.log(`Balance of ${address}:`, balance.toString());
@@ -69,7 +68,11 @@ declare global {
 
 // Connect to MetaMask
 export async function connectMetaMask(): Promise<void> {
-  if (window.ethereum) {
+  if (
+    typeof window !== "undefined" &&
+    typeof window.ethereum !== "undefined" &&
+    window.ethereum
+  ) {
     PROVIDER = new ethers.providers.Web3Provider(window.ethereum);
     await PROVIDER.send("eth_requestAccounts", []);
     SIGNER = provider.getSigner();
@@ -109,7 +112,7 @@ export async function sendToken_(): Promise<void> {
 }
 
 // Get ERC20 Token Balance
-export async function getBalance_(): Promise<void> {
+export async function getBalance_(contract: any): Promise<void> {
   const address = prompt("Enter the address to check the balance:");
 
   if (!address) {

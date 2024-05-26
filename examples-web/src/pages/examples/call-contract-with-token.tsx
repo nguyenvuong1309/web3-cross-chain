@@ -78,9 +78,9 @@ const CallContractWithToken: NextPage = () => {
           <span className="font-bold">{recipientBalances[i] || `0.00`}</span>
         </div>
       ));
-    } else {
-      return <p className="text-gray-500 font-lg">Empty</p>;
     }
+
+    return <p className="text-gray-500 font-lg">Empty</p>;
   }
 
   return (

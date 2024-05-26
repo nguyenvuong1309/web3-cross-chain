@@ -96,7 +96,21 @@ contract Marketplace is ReentrancyGuard {
             msg.sender
         );
     }
+
     function getTotalPrice(uint _itemId) view public returns(uint){
         return((items[_itemId].price*(100 + feePercent))/100);
+    }
+
+    function getItem(uint _itemId) external view returns (Item memory) {
+        require(_itemId > 0 && _itemId <= itemCount, "item doesn't exist");
+        return items[_itemId];
+    }
+
+    function getAllItems() external view returns (Item[] memory) {
+        Item[] memory allItems = new Item[](itemCount);
+        for (uint i = 1; i <= itemCount; i++) {
+            allItems[i - 1] = items[i];
+        }
+        return allItems;
     }
 }

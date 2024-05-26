@@ -1,18 +1,17 @@
 import cn from 'classnames';
 import type { NextPage } from 'next';
 import React, { useCallback, useEffect, useState } from 'react';
-import { wallet, isTestnet } from 'config/constants';
+import { wallet, isTestnet, destChain } from "config/constants";
 import {
   getBalance,
   truncatedAddress,
   depositAddressSendToken,
   gatewaySendToken,
-  sendERC20Tokens,
-  getBalanceERC20Token,
   sendToken_,
-  getBalance_,
   connectMetaMask,
+  sendERC20Tokens,
 } from "helpers";
+import { NFTGlobalContext } from "context/NFTcontext";
 
 const SendToken: NextPage = () => {
   const [customRecipientAddress, setCustomRecipientAddress] =
@@ -29,6 +28,7 @@ const SendToken: NextPage = () => {
 
   const [recipientAddressSameChain, setRecipientAddressSameChain] =
     useState<string>("");
+  const { connectWallet, ERC20TokenSameChain } = NFTGlobalContext();
 
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -78,17 +78,19 @@ const SendToken: NextPage = () => {
     setCustomRecipientAddress("");
   };
 
-  const sendERC20Token = async () => {
-    connectMetaMask();
-    sendToken_();
-    // sendERC20Tokens(
-    //   "0x72fc2C9811abc21A534550f31C5bA62dcc56Ec53",
-    //   "1000000000000000000"
-    // );
-    // const balance = await getBalanceERC20Token(
-    //   "0x72fc2C9811abc21A534550f31C5bA62dcc56Ec53"
-    // );
-    // console.log("🚀 ~ sendERC20Token ~ balance:", balance);
+  const sendERC20TokenSameChain = async () => {
+    console.log("🚀 ~ sendERC20TokenSameChain ~ sendERC20TokenSameChain:");
+    if (!ERC20TokenSameChain) {
+      await connectWallet();
+    }
+    if (recipientAddressSameChain) {
+      sendERC20Tokens(
+        ERC20TokenSameChain,
+        recipientAddressSameChain ||
+          "0x9dC89D63d72BeD1C171021Ca98602F549b4A4338",
+        "1000000000000000000"
+      );
+    }
   };
 
   useEffect(() => {
@@ -128,10 +130,10 @@ const SendToken: NextPage = () => {
         <div className="row-span-2 shadow-xl card w-96 bg-base-100">
           <figure
             className="h-64 bg-center bg-no-repeat bg-cover image-full"
-            style={{ backgroundImage: "url('/assets/avalanche.gif')" }}
+            style={{ backgroundImage: "url('/assets/fantom.jpg')" }}
           />
           <div className="card-body">
-            <h2 className="card-title">Avalanche (Token Sender)</h2>
+            <h2 className="card-title">Fantom (Token Sender)</h2>
             <p>
               Sender ({truncatedAddress(wallet.address)}) balance:{" "}
               {senderBalance}
@@ -295,10 +297,10 @@ const SendToken: NextPage = () => {
         <div className="row-span-2 shadow-xl card w-96 bg-base-100">
           <figure
             className="h-64 bg-center bg-no-repeat bg-cover image-full"
-            style={{ backgroundImage: "url('/assets/avalanche.gif')" }}
+            style={{ backgroundImage: "url('/assets/ethereum.gif')" }}
           />
           <div className="card-body">
-            <h2 className="card-title">Avalanche (Token Sender)</h2>
+            <h2 className="card-title">Ethereum (Token Sender)</h2>
             <p>
               Sender ({truncatedAddress(wallet.address)}) balance:{" "}
               {senderBalance}
@@ -320,7 +322,7 @@ const SendToken: NextPage = () => {
                       type="text"
                       placeholder="Enter address"
                       className="w-full input input-bordered"
-                      value={customRecipientAddress}
+                      value={recipientAddressSameChain}
                       onChange={(e) =>
                         setRecipientAddressSameChain(e.target.value)
                       }
@@ -375,9 +377,9 @@ const SendToken: NextPage = () => {
                       </button> */}
                     <div
                       className={cn("btn btn-primary")}
-                      onClick={sendERC20Token}
+                      onClick={sendERC20TokenSameChain}
                     >
-                      Send
+                      Send token same chain
                     </div>
                   </div>
                 </div>
@@ -414,10 +416,10 @@ const SendToken: NextPage = () => {
         <div className="row-span-1 shadow-xl card w-96 bg-base-100">
           <figure
             className="h-64 bg-center bg-no-repeat bg-cover image-full"
-            style={{ backgroundImage: "url('/assets/moonbeam.gif')" }}
+            style={{ backgroundImage: "url('/assets/ethereum.gif')" }}
           />
           <div className="card-body">
-            <h2 className="card-title">Moonbeam (Token Receiver)</h2>
+            <h2 className="card-title">Ethereum (Token Receiver)</h2>
             {loading ? (
               <div role="status">
                 <svg

@@ -40,6 +40,7 @@ export async function deploy(wallet: Wallet, chainA: any, chainB: any) {
       salt
   );
   chainA.nftLinker = nftLinkerA.address;
+  console.log("🚀 ~ deploy ~ nftLinkerA.address:", nftLinkerA.address);
 
   const nftLinkerB = await deployCreate3Upgradable(
     chainB.create3Deployer,
@@ -48,10 +49,11 @@ export async function deploy(wallet: Wallet, chainA: any, chainB: any) {
     ExampleProxy,
     [chainB.gateway, chainB.gasService],
     [],
-    utils.defaultAbiCoder.encode(['string'], [chainB.name]),
+    utils.defaultAbiCoder.encode(["string"], [chainB.name]),
     salt
   );
   chainB.nftLinker = nftLinkerB.address;
+  console.log("🚀 ~ deploy ~ nftLinkerB.address:", nftLinkerB.address);
 
   return [chainA, chainB]
 }

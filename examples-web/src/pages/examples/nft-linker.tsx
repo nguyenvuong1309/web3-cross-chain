@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import { isTestnet } from "config/constants";
 import { sendNftToDest, sendNftBack, ownerOf, truncatedAddress } from "helpers";
+import Image from "next/image";
 
 const NFTLinker: NextPage = () => {
   const [txhash, setTxhash] = useState<string>();
@@ -72,9 +73,7 @@ const NFTLinker: NextPage = () => {
       <h1 className="m-5 text-4xl font-medium text-center">
         Send NFTs Between Chains
       </h1>
-      <h2 className="m-5 text-2xl font-medium text-center">
-
-      </h2>
+      <h2 className="m-5 text-2xl font-medium text-center"></h2>
 
       <div className="grid grid-cols-2 gap-20 mt-10 justify-items-center">
         {/* source chain card */}
@@ -85,7 +84,7 @@ const NFTLinker: NextPage = () => {
           "Send",
           loading,
           owner,
-          img,
+          img
         )}
 
         {/* Destination chain card */}
@@ -96,7 +95,7 @@ const NFTLinker: NextPage = () => {
           "Send Back",
           loading,
           owner,
-          img,
+          img
         )}
       </div>
     </div>
@@ -110,9 +109,9 @@ const generateCard = (
   buttonTitle: string,
   loading: boolean,
   owner: any,
-  img: any,
+  img: any
 ) => {
-  if(!chain) return;
+  if (!chain) return;
   const disabled = loading || owner.chain !== chain.name;
 
   return (
@@ -152,7 +151,7 @@ const generateCard = (
             {owner.chain === chain.name && img && (
               <div>
                 <div className="font-extrabold">NFT</div>
-                <img className="rounded-lg" src={img} alt="icons" />
+                <Image className="rounded-lg" src={img} alt="icons" />
               </div>
             )}
           </form>

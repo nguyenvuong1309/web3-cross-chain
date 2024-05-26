@@ -1,11 +1,15 @@
 import { Card } from "components/Card";
+import { NFTContractInstanceProvider } from "context/NFTcontext";
 import type { NextPage } from "next";
 import React from "react";
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <h1 className="text-4xl font-medium text-center">Axelar Web Examples</h1>
+    <NFTContractInstanceProvider>
+      <div>
+        <h1 className="text-4xl font-medium text-center">
+          Axelar Web Examples
+        </h1>
         <div className="flex flex-wrap justify-center mt-8">
           <Card
             classname="mx-2 my-2"
@@ -27,12 +31,19 @@ const Home: NextPage = () => {
           />
           <Card
             classname="mx-2 my-2"
-            title="Send NFTs Between Chains"
-            description="Send a NFT token from source chain to the destination chain"
-            url="/examples/nft-linker"
+            title="Create NFT in the same chain"
+            description="blabala"
+            url="/nftMarketPlace/create"
           />
+          <Card
+            classname="mx-2 my-2"
+            title="NFT Market place in the same chain"
+            description="blabala"
+            url="/nftMarketPlace/sell"
+          />
+        </div>
       </div>
-    </div>
+    </NFTContractInstanceProvider>
   );
 };
 
