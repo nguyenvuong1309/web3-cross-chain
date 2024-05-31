@@ -10,7 +10,7 @@ const moonbeamContractAddress = process.env
   .NEXT_PUBLIC_SEND_MESSAGE_CROSS_CHAIN_CONTRACT_ADDRESS_MOONBEAM as string;
 
 // Transfer tokens : Fantom -> Moonbeam
-export async function sendMessageCrossChain() {
+export async function sendMessageCrossChain(message: string) {
   try {
     // Set up provider and wallet for Fantom
     const fantomProvider = new ethers.providers.JsonRpcProvider(fantomRpc);
@@ -26,7 +26,6 @@ export async function sendMessageCrossChain() {
     // Define the message and the destination details
     const destinationChain = "Moonbeam";
     const destinationAddress = moonbeamContractAddress;
-    const message = "Hello from Fantom to Moonbeam";
 
     // Estimate gas fee (adjust the gas estimation method as needed)
     const gasPrice = await fantomProvider.getGasPrice();

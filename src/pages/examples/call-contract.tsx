@@ -18,19 +18,19 @@ const CallContract: NextPage = () => {
 
   async function handleOnSubmitMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await sendMessageCrossChain();
+    const formData = new FormData(e.currentTarget);
+    await sendMessageCrossChain(formData.get("message") as string);
     setTimeout(() => {
       console.log("receve message done");
     }, 180000);
-    return;
 
-    const formData = new FormData(e.currentTarget);
-    setLoading(true);
-    await sendMessageToAvalanche(formData.get("message") as string).finally(
-      () => {
-        setLoading(false);
-      }
-    );
+    // const formData = new FormData(e.currentTarget);
+    // setLoading(true);
+    // await sendMessageToAvalanche(formData.get("message") as string).finally(
+    //   () => {
+    //     setLoading(false);
+    //   }
+    // );
   }
 
   useEffect(() => {

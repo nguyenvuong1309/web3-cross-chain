@@ -65,7 +65,7 @@ export const Navbar = () => {
       /> */}
       <Button
         onClick={connectMetaMaskWallet}
-        width={"150px"}
+        width={"200px"}
         height={"50px"}
         backgroundColor={"Highlight"}
       >
