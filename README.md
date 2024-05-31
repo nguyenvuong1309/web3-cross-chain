@@ -1,72 +1,22 @@
-# Axelar cross-chain dApp examples
+# Web Examples
 
-## Introduction
+Discover a comprehensive collection of end-to-end examples in the `examples-web` section. Conveniently, all of the examples have been packaged together, making it simple to set up and run them all in one place.
 
-This repo provides the code for several example dApps in the [Axelar Local Development Environment](https://github.com/axelarnetwork/axelar-local-dev). Examples contain both JavaScript and Solidity smart contract code.
+## Prerequisite
 
-**Note:** Some example folders in this repo are not documented.
+Before you begin, make sure you've set up your environment variables at the root directory. See [here](../README.md#set-environment-variables) for instructions.
 
-## One-time setup
+## Run Web Examples Locally
 
-Install [nodejs](https://nodejs.org/en/download/). Run `node -v` to check your installation.
+1. Navigate to the root directory.
+2. Run `npm run start` to start the local chains.
+3. Navigate to the `examples-web` directory.
+4. Run `npm ci` to install dependencies.
+5. Run `npm run setup` to copies the private key and mnemonic from the `.env` file at the root directory to the `.env` file in the `examples-web` directory.
+6. Run `npm run deploy` to compile all smart contracts, generate types for smart contract functions, and deploy to the local network.
+7. Run `npm run dev` to start the web application server.
+8. Open http://localhost:3000 in your web browser to view the examples demo.
 
-Support Node.js version 16.x and 18.x
+You should see the website looks like image below.
 
-1. Clone this repo:
-
-```bash
-git clone https://github.com/axelarnetwork/axelar-examples.git
-```
-
-2. Navigate to `axelar-examples` and install dependencies:
-
-```bash
-npm install
-```
-
-3. Compile smart contracts:
-
-```bash
-npm run build
-```
-
-## Set environment variables
-
-You can get started quickly with a random local key and `.env` file by running
-
-```bash
-npm run setup
-```
-
-Or you can manually copy the example `.env.example` file and fill in your EVM private key. See the [example Metamask Instructions](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key) for exporting your private keys.
-
-```bash
-cp .env.example .env
-```
-
-Then update to your own private key.
-
-## Running the local chains
-
-```bash
-npm run start
-```
-
-Leave this node running on a separate terminal before deploying and testing the dApps.
-
-## Print wallet balances
-
-This script will print your wallet balances for each chain.
-
-```bash
-npm run check-balance [local|testnet]
-```
-
-If not specified, this will print balances of the wallet for testnet.
-
-## Examples
-
--   [Evm Examples](/examples/evm/)
--   [Cosmos Examples](/examples/cosmos/)
--   [MultiversX Examples](/examples/multiversx/)
--   [Web Examples](/examples-web/)
+![examples-web](./docs/examples-web.png)
