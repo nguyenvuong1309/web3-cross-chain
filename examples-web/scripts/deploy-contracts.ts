@@ -16,7 +16,7 @@ import { deploy as ERC20TokenInterchain } from "./interchain-token-service";
 import { deploy_2_fantom } from "./erc20-token-crosschain";
 import { deploy_2_moonbeam } from "./erc20-token-crosschain";
 //import { deploy as deployInterChainToken } from "./erc20-token-crosschain";
-import { deploy as deploySendMessageCrossChain } from "./sendMessageCrossChain";
+import { deploy_2_fantom as deploySendMessageCrossChain2Fantom } from "./sendMessageCrossChain";
 import { deploy_2_moonbeam as deploySendMessageCrossChain2Moonbeam } from "./sendMessageCrossChain";
 
 // create wallet
@@ -38,6 +38,9 @@ function print(chain: any) {
 
 async function main() {
   console.log("🚀 ~ main ~ deploySendMessageCrossChain:");
+  //await deploySendMessageCrossChain2Fantom();
+  //await deploySendMessageCrossChain2Moonbeam();
+  console.log("🚀 ~ main ~ deploySendMessageCrossChain: sucess");
   //await deploySendMessageCrossChain2Moonbeam();
   return;
   const [chainA, chainB] = await deployCallContract(

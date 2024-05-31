@@ -15,7 +15,7 @@ const artifact = JSON.parse(json);
 const abi = artifact.abi;
 const bytecode = artifact.bytecode;
 
-export async function deploy() {
+export async function deploy_2_fantom() {
   console.log("🚀 ~ deploy ~ deploy: sendMessage");
   // Set up the provider to connect to your local blockchain
   const provider = new ethers.providers.JsonRpcProvider(
@@ -38,7 +38,10 @@ export async function deploy() {
   );
   await sendTransaction.deployed();
 
-  console.log("Send message crosschain deployed to:", sendTransaction.address);
+  console.log(
+    "Send message crosschain deployed to fantom:",
+    sendTransaction.address
+  );
   saveAddressToEnv(sendTransaction.address);
   return sendTransaction;
 }
@@ -70,5 +73,7 @@ function saveAddressToEnv(address: any) {
 
   // Join the lines back into a single string and write back to the file
   fs.writeFileSync(envPath, lines.join("\n"), "utf8");
-  console.log(`Send message crosschain address saved to .env file: ${address}`);
+  console.log(
+    `Send message crosschain address saved to fantom .env file: ${address}`
+  );
 }

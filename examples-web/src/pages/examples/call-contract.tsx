@@ -1,12 +1,15 @@
 import cn from "classnames";
 import type { NextPage } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   sendMessageToAvalanche,
   getAvalancheMessage,
   getAvalancheSourceChain,
   sendMessageCrossChain,
+  listenForMessageReceived,
 } from "helpers";
+import { ethers } from "ethers";
+import { SenderReceiver__factory as SenderReceiver } from "../../../src/types/factories/contracts/sendMessageCrossChain/Message.sol";
 
 const CallContract: NextPage = () => {
   const [msg, setMsg] = useState<string>("");
@@ -16,6 +19,9 @@ const CallContract: NextPage = () => {
   async function handleOnSubmitMessage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await sendMessageCrossChain();
+    setTimeout(() => {
+      console.log("receve message done");
+    }, 180000);
     return;
 
     const formData = new FormData(e.currentTarget);
@@ -26,6 +32,31 @@ const CallContract: NextPage = () => {
       }
     );
   }
+
+  useEffect(() => {
+    // Define a callback function to handle received messages
+    const handleMessageReceived = (receivedMessage: string) => {
+      //setMsg((prevMessages) => [...prevMessages, receivedMessage]);
+      setMsg(receivedMessage);
+    };
+
+    // Start listening for messages
+    listenForMessageReceived(handleMessageReceived);
+
+    // Cleanup function to remove the listener when the component unmounts
+    return () => {
+      const moonbeamProvider = new ethers.providers.JsonRpcProvider(
+        process.env.NEXT_PUBLIC_MOONBEAM_RPC
+      );
+      const contract = new ethers.Contract(
+        process.env
+          .NEXT_PUBLIC_SEND_MESSAGE_CROSS_CHAIN_CONTRACT_ADDRESS_MOONBEAM as string,
+        SenderReceiver.abi,
+        moonbeamProvider
+      );
+      contract.removeAllListeners("MessageReceived");
+    };
+  }, []);
 
   async function handleOnGetMessage() {
     const _msg = await getAvalancheMessage();
