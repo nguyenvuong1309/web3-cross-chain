@@ -45,7 +45,7 @@ export async function deploy() {
 
 function saveAddressToEnv(address: any) {
   const envPath = path.resolve(__dirname, "../../.env");
-  const key = "NEXT_PUBLIC_SEND_MESSAGE_CROSS_CHAIN_CONTRACT_ADDRESS";
+  const key = "NEXT_PUBLIC_SEND_MESSAGE_CROSS_CHAIN_CONTRACT_ADDRESS_FANTOM";
   let updated = false;
 
   // Read the current .env file content

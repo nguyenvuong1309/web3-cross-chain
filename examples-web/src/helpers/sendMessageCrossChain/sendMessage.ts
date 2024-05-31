@@ -2,11 +2,15 @@ import { ethers } from "ethers";
 import { SenderReceiver__factory as SenderReceiver } from "../../../src/types/factories/contracts/sendMessageCrossChain/Message.sol";
 const {
   AxelarQueryAPI,
+  AxelarGMPRecoveryAPI,
   Environment,
   EvmChain,
   GasToken,
+  AddGasOptions,
 } = require("@axelar-network/axelarjs-sdk");
-const api = new AxelarQueryAPI({ environment: Environment.TESTNET });
+const sdk = new AxelarGMPRecoveryAPI({
+  environment: Environment.TESTNET,
+});
 
 const fantomRpc = process.env.NEXT_PUBLIC_FANTOM_RPC;
 const deployerPrivateKey = process.env
@@ -19,6 +23,7 @@ const moonbeamContractAddress =
 // Transfer tokens : Fantom -> Moonbeam
 export async function sendMessageCrossChain() {
   try {
+    const api = new AxelarGMPRecoveryAPI({ environment: Environment.TESTNET });
     // Set up provider and wallet for Fantom
     const fantomProvider = new ethers.providers.JsonRpcProvider(fantomRpc);
     const fantomWallet = new ethers.Wallet(deployerPrivateKey, fantomProvider);
@@ -42,17 +47,18 @@ export async function sendMessageCrossChain() {
       destinationChain,
       destinationAddress,
       message,
-      { value: gasPrice }
+      { value: ethers.utils.parseEther("0.5") } // Include 1 FTM in the value field for estimation
     );
 
-    // Send the message
+    // Send the message with 1 FTM
     const tx = await fantomContract.sendMessage(
       destinationChain,
       destinationAddress,
       message,
       {
-        value: estimatedGas.mul(gasPrice),
+        value: ethers.utils.parseEther("0.5"), // Send 1 FTM along with the message
         gasLimit: estimatedGas,
+        gasPrice: gasPrice,
       }
     );
 
@@ -60,7 +66,7 @@ export async function sendMessageCrossChain() {
     await tx.wait();
     console.log("Message sent successfully!");
   } catch (error) {
-    console.log("🚀 ~ transferTokens ~ error:", error);
+    console.log("🚀 ~ sendMessageCrossChain ~ error:", error);
   }
 }
 
