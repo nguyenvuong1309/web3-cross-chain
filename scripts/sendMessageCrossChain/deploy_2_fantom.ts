@@ -1,19 +1,10 @@
 const { ethers } = require("ethers");
 const fs = require("fs");
 const path = require("path");
+import { SenderReceiver__factory as SenderReceiverfactory } from "../../src/types/factories/contracts/sendMessageCrossChain/Message.sol";
 
-const json = fs.readFileSync(
-  path.resolve(
-    __dirname,
-    "../../artifacts/contracts/sendMessageCrossChain/Message.sol/SenderReceiver.json"
-  ),
-  "utf8"
-);
-
-const artifact = JSON.parse(json);
-
-const abi = artifact.abi;
-const bytecode = artifact.bytecode;
+const abi = SenderReceiverfactory.abi;
+const bytecode = SenderReceiverfactory.bytecode;
 
 export async function deploy_2_fantom() {
   console.log("🚀 ~ deploy ~ deploy: sendMessage");
