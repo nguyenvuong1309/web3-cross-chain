@@ -7,9 +7,9 @@ const Home: NextPage = () => {
   return (
     <NFTContractInstanceProvider>
       <div>
-        <h1 className="text-4xl font-medium text-center">
+        {/* <h1 className="text-4xl font-medium text-center">
           Axelar Web Examples
-        </h1>
+        </h1> */}
         <div className="flex flex-wrap justify-center mt-8">
           <Card
             classname="mx-2 my-2"
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
             description="Transfer messages from the source chain to the destination chain using the Axelar Gateway's callContract function."
             url="/examples/call-contract"
           />
-          <Card
+          {/* <Card
             classname="mx-2 my-2"
             title="Send token to another chain"
             description="Simply sending a token from source chain to the destination chain"
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
             title="NFT Market place in the same chain"
             description="blabala"
             url="/nftMarketPlace/sell"
-          />
+          /> */}
         </div>
       </div>
     </NFTContractInstanceProvider>

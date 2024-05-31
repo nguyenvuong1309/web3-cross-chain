@@ -15,19 +15,19 @@ export const Navbar = () => {
   const { signer, connectWallet } = NFTGlobalContext();
   const connectMetaMaskWallet = async () => {
     if (signer) {
-      const address = await signer.getAddress();
+      const address = await signer?.getAddress();
       setAccount(address);
       return;
     }
     await connectWallet();
-    const address = await signer.getAddress();
+    const address = await signer?.getAddress();
     setAccount(address);
   };
 
   useEffect(() => {
     const setAddress = async () => {
       if (signer) {
-        const address = await signer.getAddress();
+        const address = await signer?.getAddress();
         setAccount(address);
       }
     };

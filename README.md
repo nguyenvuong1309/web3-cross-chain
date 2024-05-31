@@ -1,4 +1,4 @@
-# Web Examples
+<!-- # Web Examples
 
 Discover a comprehensive collection of end-to-end examples in the `examples-web` section. Conveniently, all of the examples have been packaged together, making it simple to set up and run them all in one place.
 
@@ -19,4 +19,14 @@ Before you begin, make sure you've set up your environment variables at the root
 
 You should see the website looks like image below.
 
-![examples-web](./docs/examples-web.png)
+![examples-web](./docs/examples-web.png) -->
+
+
+# How to start the project
+1. `npm ci`
+2. `npm run build` to build next.js project.
+3. `npm run dev` to start the project.
+
+- open the http://localhost:3000  in your web browser to view the examples demo.
+
+![image](https://github.com/nguyenvuong1309/web3_project/assets/100818110/c31b90bb-bc7a-443e-870a-77d21363a32d)

@@ -22,15 +22,7 @@ export async function deploy(wallet: Wallet, chainA: any, chainB: any) {
   );
 
   chainA.callContract = callContractSender.address;
-  console.log(
-    "🚀 ~ deploy ~ callContractSender.address:",
-    callContractSender.address
-  );
   chainB.callContract = callContractReceiver.address;
-  console.log(
-    "🚀 ~ deploy ~ callContractReceiver.address:",
-    callContractReceiver.address
-  );
 
   return [chainA, chainB];
 }

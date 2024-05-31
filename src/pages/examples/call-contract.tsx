@@ -80,10 +80,10 @@ const CallContract: NextPage = () => {
           <div className="row-span-1 shadow-xl card w-96 bg-base-100">
             <figure
               className="h-64 bg-center bg-no-repeat bg-cover image-full"
-              style={{ backgroundImage: "url('/assets/ethereum.gif')" }}
+              style={{ backgroundImage: "url('/assets/fantom.jpg')" }}
             />
             <div className="card-body">
-              <h2 className="card-title">Ethereum (Message Sender)</h2>
+              <h2 className="card-title">Fantom (Message Sender)</h2>
               <p>Send a cross-chain message</p>
               <div className="justify-end mt-10 card-actions">
                 <form
@@ -117,10 +117,10 @@ const CallContract: NextPage = () => {
           <div className="row-span-2 shadow-xl card w-96 bg-base-100">
             <figure
               className="h-64 bg-center bg-no-repeat bg-cover image-full"
-              style={{ backgroundImage: "url('/assets/avalanche.gif')" }}
+              style={{ backgroundImage: "url('/assets/moonbeam.jpg')" }}
             />
             <div className="card-body">
-              <h2 className="card-title">Avalanche (Message Receiver)</h2>
+              <h2 className="card-title">Moonbeam (Message Receiver)</h2>
               <div>
                 <div className="w-full max-w-xs form-control">
                   <label className="label">

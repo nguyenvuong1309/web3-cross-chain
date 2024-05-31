@@ -30,13 +30,11 @@ export async function sendERC20Tokens(contract: any, to: any, amount: any) {
 
   const txResponse = await fundingWallet.sendTransaction(tx);
   await txResponse.wait();
-  console.log("🚀 ~ funding success");
   try {
     const tx = await contract.transfer(to, amount, {
       gasLimit: 1000000,
     });
     await tx.wait(); // Waiting for the transaction to be mined
-    console.log("Tokens transferred:", tx);
   } catch (error) {
     console.log("🚀 ~ sendERC20Tokens ~ error:", error);
   }

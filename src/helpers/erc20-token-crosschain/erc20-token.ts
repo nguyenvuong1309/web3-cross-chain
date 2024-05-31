@@ -17,7 +17,6 @@ const api = new AxelarQueryAPI({ environment: Environment.TESTNET });
 // Transfer tokens : Fantom -> Polygon
 export async function transferTokens() {
   try {
-    console.log("🚀 ~ transferTokens ~ transferTokens:");
     // Get a signer to sign the transaction
     const fantomProvider = new ethers.providers.JsonRpcProvider(
       process.env.NEXT_PUBLIC_FANTOM_RPC
@@ -31,10 +30,6 @@ export async function transferTokens() {
       interchainTokenServiceContractAddress,
       interchainTokenServiceContractABI,
       fantomSigner
-    );
-    console.log(
-      "🚀 ~ transferTokens ~ interchainTokenServiceContract:",
-      interchainTokenServiceContract
     );
     //const gasAmount = await gasEstimator();
     const transfer = await interchainTokenServiceContract.interchainTransfer(
@@ -50,7 +45,6 @@ export async function transferTokens() {
       }
     );
 
-    console.log("Transfer Transaction Hash:", transfer.hash);
     // 0x65258117e8133397b047a6192cf69a1b48f59b0cb806be1c0fa5a7c1efd747ef
   } catch (error) {
     console.log("🚀 ~ transferTokens ~ error:", error);

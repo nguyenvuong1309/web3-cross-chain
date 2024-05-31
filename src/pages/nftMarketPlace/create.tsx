@@ -12,7 +12,6 @@ import {
 import { Button, Image } from "@chakra-ui/react";
 import { NFTGlobalContext } from "context/NFTcontext";
 
-console.log("process.emv", process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY);
 
 const Create = ({ marketplace, nft }: any) => {
   const [file, setFile] = useState("");
@@ -43,7 +42,6 @@ const Create = ({ marketplace, nft }: any) => {
         process.env.NEXT_PUBLIC_NFT_SAME_CHAIN_CONTRACT_ADDRESS as string,
         nftId
       );
-      console.log("🚀 ~ createNFT ~ res:", res);
     }
   };
   return (

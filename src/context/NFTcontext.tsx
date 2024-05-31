@@ -56,7 +56,6 @@ export function NFTContractInstanceProvider({
             signer
           );
           setNFTContract(NFTcontract);
-          console.log("🚀 ~ connectWal ~ setNFTContract(NFTcontract): success");
         }
 
         // MARKETPLACE
@@ -70,9 +69,6 @@ export function NFTContractInstanceProvider({
             signer
           );
           setMarketContract(Marketcontract);
-          console.log(
-            "🚀 ~ connectWal ~ setMarketContract(Marketcontract);: success"
-          );
         }
 
         // SEND TOKEN SAME CHAIN
@@ -84,11 +80,7 @@ export function NFTContractInstanceProvider({
             signer
           );
           setERC20TokenSameChain(ERC20TokenSameChainContract);
-          console.log(
-            "🚀 ~ connectWal ~ setERC20TokenSameChain(ERC20TokenSameChainContract):"
-          );
         }
-        console.log("connect wallet success");
       } catch (error) {
         console.log("Error connecting to MetaMask", error);
       }

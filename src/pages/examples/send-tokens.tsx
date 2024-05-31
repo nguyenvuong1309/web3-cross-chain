@@ -79,7 +79,6 @@ const SendToken: NextPage = () => {
   };
 
   const sendERC20TokenSameChain = async () => {
-    console.log("🚀 ~ sendERC20TokenSameChain ~ sendERC20TokenSameChain:");
     if (!ERC20TokenSameChain) {
       await connectWallet();
     }

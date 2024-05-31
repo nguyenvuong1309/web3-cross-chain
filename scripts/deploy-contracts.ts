@@ -37,10 +37,8 @@ function print(chain: any) {
 }
 
 async function main() {
-  console.log("🚀 ~ main ~ deploySendMessageCrossChain:");
   //await deploySendMessageCrossChain2Fantom();
   //await deploySendMessageCrossChain2Moonbeam();
-  console.log("🚀 ~ main ~ deploySendMessageCrossChain: sucess");
   //await deploySendMessageCrossChain2Moonbeam();
   return;
   // const [chainA, chainB] = await deployCallContract(

@@ -31,7 +31,7 @@ export async function deploy_2_moonbeam() {
   await sendTransaction.deployed();
 
   console.log(
-    "Send message crosschain deployed to moonbeam:",
+    "Send message crosschain contract deployed to moonbeam:",
     sendTransaction.address
   );
   saveAddressToEnv(sendTransaction.address);
@@ -66,6 +66,6 @@ function saveAddressToEnv(address: any) {
   // Join the lines back into a single string and write back to the file
   fs.writeFileSync(envPath, lines.join("\n"), "utf8");
   console.log(
-    `Send message crosschain address saved to moonbeam .env file: ${address}`
+    `Send message crosschain contract address saved to moonbeam .env file: ${address}`
   );
 }

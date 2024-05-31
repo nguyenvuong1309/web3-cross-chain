@@ -14,11 +14,10 @@ const Sell = () => {
       if (!NFTContract || !MarketContract) {
         await connectWallet();
       }
-      console.log("NFTContract", NFTContract);
-      console.log("MarketContract", MarketContract);
+
       const temp = [];
       const listNFT = await getNFT(MarketContract);
-      console.log("🚀 ~ getAllNFT ~ listNFT:", listNFT?.length);
+   
       for (let i = 0; i < listNFT?.length; i++) {
         temp.push(
           await getNFTUrl(
@@ -27,7 +26,7 @@ const Sell = () => {
           )
         );
       }
-      console.log("🚀 ~ getAllNFT ~ temp:", temp);
+   
       setListNFTUrl(temp);
       setListNFT(listNFT);
     };
