@@ -1,13 +1,12 @@
 import { ethers } from "ethers";
 import {
   AxelarQueryAPI,
+  AxelarQueryAPIFeeResponse,
   Environment,
   EvmChain,
   GasToken,
 } from "@axelar-network/axelarjs-sdk";
-import {
-  CallContractWithToken__factory as CallContractWithTokenFactory
-} from "types/factories/contracts/call-contract-with-token/contracts";
+import { CallContractWithToken__factory as CallContractWithTokenFactory } from "types/factories/contracts/call-contract-with-token/contracts";
 import {
   IAxelarGateway__factory as AxelarGatewayFactory,
   IERC20__factory as IERC20Factory,
@@ -60,29 +59,32 @@ export async function sendTokenToDestChain(
   const api = new AxelarQueryAPI({ environment: Environment.TESTNET });
 
   // Calculate how much gas to pay to Axelar to execute the transaction at the destination chain
-  const gasFee = await api.estimateGasFee(
-    EvmChain.ETHEREUM,
-    EvmChain.AVALANCHE,
-    GasToken.ETH,
-    700000,
-    2
-  );
+  const gasFee: string | AxelarQueryAPIFeeResponse | number =
+    await api.estimateGasFee(
+      EvmChain.ETHEREUM,
+      EvmChain.AVALANCHE,
+      GasToken.ETH,
+      700000,
+      "2"
+    );
 
   // Send the token
-  const receipt = await sourceContract
-    .sendToMany(
-      "Avalanche",
-      destContract.address,
-      recipientAddresses,
-      "aUSDC",
-      ethers.utils.parseUnits(amount, 6),
-      {
-        value: BigInt(isTestnet ? gasFee : 3000000),
-      }
-    )
-    .then((tx: any) => tx.wait());
+  if (typeof gasFee === "number" || typeof gasFee === "string") {
+    const receipt = await sourceContract
+      .sendToMany(
+        "Avalanche",
+        destContract.address,
+        recipientAddresses,
+        "aUSDC",
+        ethers.utils.parseUnits(amount, 6),
+        {
+          value: BigInt(isTestnet ? gasFee : 3000000),
+        }
+      )
+      .then((tx: any) => tx.wait());
 
-  onSent(receipt.transactionHash);
+    onSent(receipt.transactionHash);
+  }
 }
 
 export async function waitDestExecution() {

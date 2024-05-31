@@ -31,7 +31,11 @@ export async function sendNftToDest(
   onSent: (ownerInfo: any) => void
 ) {
   const owner = await ownerOf();
-  const gasFee = getGasFee(srcChain.name, destChain.name, srcChain.tokenSymbol);
+  const gasFee: any = getGasFee(
+    srcChain.name,
+    destChain.name,
+    srcChain.tokenSymbol
+  );
 
   await srcErc721
     .approve(srcNftLinker.address, owner.tokenId || tokenId)
@@ -69,7 +73,7 @@ export async function sendNftBack(
 ) {
   const owner = await ownerOf();
 
-  const gasFee = getGasFee(
+  const gasFee: any = getGasFee(
     destChain.name,
     srcChain.name,
     destChain.tokenSymbol
