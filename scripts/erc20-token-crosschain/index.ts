@@ -1,4 +1,3 @@
-// export * from "./deploy_moonbeam";
-// export * from "./deploy";
-// export * from "./deploy_fantom";
-// export * from "./deploy_remote_moonbeam";
+export * from "./deploy_2_fantom";
+export * from "./deploy_remote_2_moonbeam";
+export * from "./deploy";

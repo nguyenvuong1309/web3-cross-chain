@@ -165,3 +165,19 @@
 // // Transaction Hash: 0x8658911d7453e81b2f2e958a275bfd712d8266b1e1715b3cb1356d2f9221f5c0,
 // // Token ID: 0x9f7ab2a537719f8a1941000847238d9edb36458dc25c8b039e713c3365283d4a,
 // // Expected token manager address: 0x034B131668b380A4a33689dA6dCA65524ec964D3,
+
+
+import { deploy_ECR20_crosschain_2_fantom } from "./deploy_2_fantom";
+import { deploy_remote_ERC20_token_2_moonbeam } from "./deploy_remote_2_moonbeam";
+
+export const deploy = async () => {
+  const { tokenId, expectedTokenManagerAddress, salt } =
+    await deploy_ECR20_crosschain_2_fantom();
+  console.log(
+    "🚀 ~ main ~ tokenId, expectedTokenManagerAddress, salt:",
+    tokenId,
+    expectedTokenManagerAddress,
+    salt
+  );
+  await deploy_remote_ERC20_token_2_moonbeam(salt);
+};

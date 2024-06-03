@@ -13,11 +13,12 @@ import { deploy as deploySendMessage } from "./sendMessage";
 // import { deploy as deployMarketplaceSameChain } from "./marketplace-samechain";
 // import { deploy as sendMessageSameChain } from "./sendMessageSameChain";
 // import { deploy as ERC20TokenInterchain } from "./interchain-token-service";
-// import { deploy_2_fantom } from "./erc20-token-crosschain";
-// import { deploy_2_moonbeam } from "./erc20-token-crosschain";
+import { deploy_ECR20_crosschain_2_fantom } from "./erc20-token-crosschain";
+import { deploy_remote_ERC20_token_2_moonbeam } from "./erc20-token-crosschain";
 //import { deploy as deployInterChainToken } from "./erc20-token-crosschain";
 import { deploy_2_fantom as deploySendMessageCrossChain2Fantom } from "./sendMessageCrossChain";
 import { deploy_2_moonbeam as deploySendMessageCrossChain2Moonbeam } from "./sendMessageCrossChain";
+import { deploy as deploy_ERC20_Token_crosschain } from "./erc20-token-crosschain";
 
 // create wallet
 const privateKey = process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY as string;
@@ -40,7 +41,7 @@ async function main() {
   //await deploySendMessageCrossChain2Fantom();
   //await deploySendMessageCrossChain2Moonbeam();
   //await deploySendMessageCrossChain2Moonbeam();
-  return;
+  //return;
   // const [chainA, chainB] = await deployCallContract(
   //   wallet,
   //   ethereumChain,
@@ -61,11 +62,9 @@ async function main() {
   // await sendMessageSameChain();
   // console.log("🚀 ~ main ~ ERC20TokenInterchain:", ERC20TokenInterchain);
   // await ERC20TokenInterchain();
-
   // print(chainA);
   // console.log("");
   // print(chainB);
-
   // // update chains
   // const updatedChains = [chainA, chainB];
   // const _path = path.resolve(configPath.localEvmChains);
