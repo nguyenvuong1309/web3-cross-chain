@@ -17,13 +17,13 @@ const Home: NextPage = () => {
             description="Transfer messages from the source chain to the destination chain using the Axelar Gateway's callContract function."
             url="/examples/call-contract"
           />
-          {/* <Card
+          <Card
             classname="mx-2 my-2"
             title="Send token to another chain"
-            description="Simply sending a token from source chain to the destination chain"
-            url="/examples/send-tokens"
+            description="Simply sending a token from source chain to the destination chain and have zkp"
+            url="/examples/send-tokens-cross-chain"
           />
-          <Card
+          {/* <Card
             classname="mx-2 my-2"
             title="Send token with custom logic to another chain"
             description="Transfer tokens and execute custom logic to the destination chain using the callContractWithToken function of the Axelar Gateway contract."

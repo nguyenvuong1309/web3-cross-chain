@@ -9,7 +9,14 @@ const PRIVATE_KEY  = "6ba91baa35401e9b5a28e9453d7d287791d658281a0f8c463934d2d4ed
 
 module.exports = {
   solidity: {
-    version: "0.8.9",
+    compilers: [
+      {
+        version: "0.8.9",
+      },
+      {
+        version: "0.8.6"
+      },
+    ],
     settings: {
       evmVersion: process.env.EVM_VERSION || "london",
       optimizer: {
@@ -38,6 +45,8 @@ module.exports = {
     outDir: 'src/types',
     target: 'ethers-v5',
   },
+  gas: 2100000,
+  gasPrice: 8000000000,
   networks: {
     Ethereum: {
       url: `http://localhost:8500/3`,

@@ -19,6 +19,8 @@ import { deploy_remote_ERC20_token_2_moonbeam } from "./erc20-token-crosschain";
 import { deploy_2_fantom as deploySendMessageCrossChain2Fantom } from "./sendMessageCrossChain";
 import { deploy_2_moonbeam as deploySendMessageCrossChain2Moonbeam } from "./sendMessageCrossChain";
 import { deploy as deploy_ERC20_Token_crosschain } from "./erc20-token-crosschain";
+import { deploy_all_contracts } from "./cross-chain-zkp/deploy";
+
 
 // create wallet
 const privateKey = process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY as string;
@@ -38,6 +40,7 @@ function print(chain: any) {
 }
 
 async function main() {
+  deploy_all_contracts();
   //await deploySendMessageCrossChain2Fantom();
   //await deploySendMessageCrossChain2Moonbeam();
   //await deploySendMessageCrossChain2Moonbeam();

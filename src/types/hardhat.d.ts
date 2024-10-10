@@ -81,6 +81,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IAccessControl__factory>;
     getContractFactory(
+      name: "Ownable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Ownable__factory>;
+    getContractFactory(
       name: "IERC4906",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC4906__factory>;
@@ -161,6 +165,26 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CallContract__factory>;
     getContractFactory(
+      name: "BridgeA",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BridgeA__factory>;
+    getContractFactory(
+      name: "BridgeB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BridgeB__factory>;
+    getContractFactory(
+      name: "Storage",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Storage__factory>;
+    getContractFactory(
+      name: "TokenA",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenA__factory>;
+    getContractFactory(
+      name: "TokenB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenB__factory>;
+    getContractFactory(
       name: "SimpleCustomToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SimpleCustomToken__factory>;
@@ -189,6 +213,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.NFT__factory>;
     getContractFactory(
+      name: "RPSGame",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RPSGame__factory>;
+    getContractFactory(
+      name: "RPSServer",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RPSServer__factory>;
+    getContractFactory(
       name: "SenderReceiver",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SenderReceiver__factory>;
@@ -204,6 +236,22 @@ declare module "hardhat/types/runtime" {
       name: "Messaging",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Messaging__factory>;
+    getContractFactory(
+      name: "TokenA",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenA__factory>;
+    getContractFactory(
+      name: "TokenB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenB__factory>;
+    getContractFactory(
+      name: "ITokenB",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ITokenB__factory>;
+    getContractFactory(
+      name: "TokenBridge",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenBridge__factory>;
 
     getContractAt(
       name: "AxelarExecutable",
@@ -290,6 +338,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IAccessControl>;
+    getContractAt(
+      name: "Ownable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Ownable>;
     getContractAt(
       name: "IERC4906",
       address: string,
@@ -391,6 +444,31 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.CallContract>;
     getContractAt(
+      name: "BridgeA",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BridgeA>;
+    getContractAt(
+      name: "BridgeB",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BridgeB>;
+    getContractAt(
+      name: "Storage",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Storage>;
+    getContractAt(
+      name: "TokenA",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenA>;
+    getContractAt(
+      name: "TokenB",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenB>;
+    getContractAt(
       name: "SimpleCustomToken",
       address: string,
       signer?: ethers.Signer
@@ -426,6 +504,16 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.NFT>;
     getContractAt(
+      name: "RPSGame",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RPSGame>;
+    getContractAt(
+      name: "RPSServer",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RPSServer>;
+    getContractAt(
       name: "SenderReceiver",
       address: string,
       signer?: ethers.Signer
@@ -445,6 +533,26 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Messaging>;
+    getContractAt(
+      name: "TokenA",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenA>;
+    getContractAt(
+      name: "TokenB",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenB>;
+    getContractAt(
+      name: "ITokenB",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ITokenB>;
+    getContractAt(
+      name: "TokenBridge",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenBridge>;
 
     // default types
     getContractFactory(

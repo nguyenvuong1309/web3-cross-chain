@@ -108,23 +108,7 @@ Các sơ đồ giao dịch tiền điện tử giữa các chuỗi hiện nay c�
 
 ### 2.2. Công Nghệ Bảo Vệ Quyền Riêng Tư Trong Giao Dịch Giữa Các Chuỗi
 
-Để giải quyết vấn đề bảo mật thông tin trong các giao dịch giữa các chuỗi, một số giao thức bảo vệ quyền riêng tư đã được đề xuất, đặc biệt là cho các blockchain được phép (permissioned blockchains). Một trong các công trình nghiên cứu như sau:
-
-- **Ma et al.:** Đề xuất một sơ đồ bảo vệ quyền riêng tư cho mạng lưới blockchain giữa các cạnh (cross-edge blockchain network) sử dụng mã hóa toàn phần đồng hình (fully homomorphic encryption). Sơ đồ này dựa trên một relay chain, nơi mỗi chuỗi ứng dụng truy cập được sinh ra một cặp khóa đồng hình toàn phần. Thêm vào đó, khóa riêng bảo mật đồng hình toàn phần của ...
-
-*(Chú ý: Phần văn bản cung cấp bị cắt ngắn nên hỗ trợ giải thích chi tiết thêm không khả thi.)*
-
-## Kết Luận
-
-Phần này đã trình bày các loại sơ đồ giao dịch tiền điện tử giữa các chuỗi hiện có, bao gồm notary schemes, sidechains và relays, cũng như HTLCs. Ngoài ra, cũng đề cập đến các công nghệ bảo vệ quyền riêng tư trong giao dịch giữa các chuỗi, nhấn mạnh tầm quan trọng của việc bảo vệ thông tin giao dịch để đảm bảo tính bảo mật và riêng tư cho người dùng.
-
-Nếu bạn cần thêm thông tin hoặc giải thích chi tiết về bất kỳ phần cụ thể nào, hãy cho tôi biết!
-
-# Giải Thích Phần Tiếp Theo Về Giao Dịch Tiền Điện Tử Giữa Các Chuỗi và Công Nghệ Bảo Vệ Quyền Riêng Tư
-
-## 2.2. Công Nghệ Bảo Vệ Quyền Riêng Tư Trong Giao Dịch Giữa Các Chuỗi (tiếp tục)
-
-### Các Nghiên Cứu Liên Quan Đến Công Nghệ Bảo Vệ Quyền Riêng Tư
+#### Các Nghiên Cứu Liên Quan Đến Công Nghệ Bảo Vệ Quyền Riêng Tư
 
 1. **Sơ Đồ Chuyển Tiền Bảo Vệ Quyền Riêng Tư Trên Cross-Edge Blockchain Network của Ma et al.[25]**
    - **Mã Hóa Toàn Phần Đồng Hình (Fully Homomorphic Encryption):** Giúp bảo vệ dữ liệu cross-chain bằng cách mã hóa hoàn toàn, cho phép xử lý dữ liệu mà không cần giải mã.

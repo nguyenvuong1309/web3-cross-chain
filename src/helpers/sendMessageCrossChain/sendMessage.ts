@@ -36,9 +36,10 @@ export async function sendMessageCrossChain(message: string) {
       message,
       { value: ethers.utils.parseEther("0.5") } // Include 1 FTM in the value field for estimation
     );
+    console.log("🚀 ~ sendMessageCrossChain ~ estimatedGas:", estimatedGas);
 
     // Send the message with 1 FTM
-    const tx = await fantomContract.sendMessage(
+    const tx = await fantomContract.sendData(
       destinationChain,
       destinationAddress,
       message,
