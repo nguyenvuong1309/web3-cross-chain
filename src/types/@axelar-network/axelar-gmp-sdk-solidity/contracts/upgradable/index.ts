@@ -2,5 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { BaseProxy } from "./BaseProxy";
+export type { Implementation } from "./Implementation";
 export type { Proxy } from "./Proxy";
 export type { Upgradable } from "./Upgradable";

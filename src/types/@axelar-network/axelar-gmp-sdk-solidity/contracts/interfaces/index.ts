@@ -7,6 +7,8 @@ export type { IAxelarGateway } from "./IAxelarGateway";
 export type { IContractIdentifier } from "./IContractIdentifier";
 export type { IERC20 } from "./IERC20";
 export type { IGovernable } from "./IGovernable";
+export type { IImplementation } from "./IImplementation";
+export type { IInterchainGasEstimation } from "./IInterchainGasEstimation";
 export type { IOwnable } from "./IOwnable";
 export type { IProxy } from "./IProxy";
 export type { IUpgradable } from "./IUpgradable";

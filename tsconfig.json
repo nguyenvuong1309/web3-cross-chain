@@ -24,6 +24,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/helpers/sendMessageSameChain/sendMessageSameChain.ts"
-  ],
+, "src/helpers/cross-chain-zkp/lock_phase_function.ts"  ],
   "exclude": ["node_modules"]
 }

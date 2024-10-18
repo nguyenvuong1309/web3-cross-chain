@@ -2,5 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export { BaseProxy__factory } from "./BaseProxy__factory";
+export { Implementation__factory } from "./Implementation__factory";
 export { Proxy__factory } from "./Proxy__factory";
 export { Upgradable__factory } from "./Upgradable__factory";

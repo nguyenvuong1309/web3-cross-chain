@@ -11,6 +11,22 @@ import type {
 
 const _abi = [
   {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "required",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "provided",
+        type: "uint256",
+      },
+    ],
+    name: "InsufficientGasPayment",
+    type: "error",
+  },
+  {
     inputs: [],
     name: "InvalidAddress",
     type: "error",
@@ -23,6 +39,11 @@ const _abi = [
   {
     inputs: [],
     name: "InvalidCodeHash",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "InvalidGasUpdates",
     type: "error",
   },
   {
@@ -42,6 +63,11 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "InvalidParams",
+    type: "error",
+  },
+  {
+    inputs: [],
     name: "NotCollector",
     type: "error",
   },
@@ -57,12 +83,18 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "NothingReceived",
+    name: "SetupFailed",
     type: "error",
   },
   {
-    inputs: [],
-    name: "SetupFailed",
+    inputs: [
+      {
+        internalType: "enum GasEstimationType",
+        name: "gasEstimationType",
+        type: "uint8",
+      },
+    ],
+    name: "UnsupportedEstimationType",
     type: "error",
   },
   {
@@ -137,6 +169,57 @@ const _abi = [
       },
     ],
     name: "GasAdded",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "string",
+        name: "chain",
+        type: "string",
+      },
+      {
+        components: [
+          {
+            internalType: "uint64",
+            name: "gasEstimationType",
+            type: "uint64",
+          },
+          {
+            internalType: "uint64",
+            name: "l1FeeScalar",
+            type: "uint64",
+          },
+          {
+            internalType: "uint128",
+            name: "axelarBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeGasPrice",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeBlobBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "expressFee",
+            type: "uint128",
+          },
+        ],
+        indexed: false,
+        internalType: "struct GasInfo",
+        name: "info",
+        type: "tuple",
+      },
+    ],
+    name: "GasInfoUpdated",
     type: "event",
   },
   {
@@ -849,6 +932,45 @@ const _abi = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "string",
+        name: "destinationChain",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "destinationAddress",
+        type: "string",
+      },
+      {
+        internalType: "bytes",
+        name: "payload",
+        type: "bytes",
+      },
+      {
+        internalType: "uint256",
+        name: "executionGasLimit",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "params",
+        type: "bytes",
+      },
+    ],
+    name: "estimateGasFee",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "gasEstimate",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "gasCollector",
     outputs: [
@@ -859,6 +981,57 @@ const _abi = [
       },
     ],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "chain",
+        type: "string",
+      },
+    ],
+    name: "getGasInfo",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint64",
+            name: "gasEstimationType",
+            type: "uint64",
+          },
+          {
+            internalType: "uint64",
+            name: "l1FeeScalar",
+            type: "uint64",
+          },
+          {
+            internalType: "uint128",
+            name: "axelarBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeGasPrice",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeBlobBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "expressFee",
+            type: "uint128",
+          },
+        ],
+        internalType: "struct GasInfo",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -885,6 +1058,54 @@ const _abi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "sender",
+        type: "address",
+      },
+      {
+        internalType: "string",
+        name: "destinationChain",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "destinationAddress",
+        type: "string",
+      },
+      {
+        internalType: "bytes",
+        name: "payload",
+        type: "bytes",
+      },
+      {
+        internalType: "uint256",
+        name: "executionGasLimit",
+        type: "uint256",
+      },
+      {
+        internalType: "bool",
+        name: "estimateOnChain",
+        type: "bool",
+      },
+      {
+        internalType: "address",
+        name: "refundAddress",
+        type: "address",
+      },
+      {
+        internalType: "bytes",
+        name: "params",
+        type: "bytes",
+      },
+    ],
+    name: "payGas",
+    outputs: [],
+    stateMutability: "payable",
     type: "function",
   },
   {
@@ -1312,6 +1533,56 @@ const _abi = [
       },
     ],
     name: "transferOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string[]",
+        name: "chains",
+        type: "string[]",
+      },
+      {
+        components: [
+          {
+            internalType: "uint64",
+            name: "gasEstimationType",
+            type: "uint64",
+          },
+          {
+            internalType: "uint64",
+            name: "l1FeeScalar",
+            type: "uint64",
+          },
+          {
+            internalType: "uint128",
+            name: "axelarBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeGasPrice",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "relativeBlobBaseFee",
+            type: "uint128",
+          },
+          {
+            internalType: "uint128",
+            name: "expressFee",
+            type: "uint128",
+          },
+        ],
+        internalType: "struct GasInfo[]",
+        name: "gasUpdates",
+        type: "tuple[]",
+      },
+    ],
+    name: "updateGasInfo",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

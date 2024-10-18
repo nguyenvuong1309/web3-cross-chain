@@ -8,7 +8,7 @@ import { saveAddressToEnv } from "../../src/lib/uitls";
 const json = fs.readFileSync(
   path.resolve(
     __dirname,
-    "../../artifacts/contracts/cross-chain-zkp/TokenA.sol/TokenA.json"
+    // "../../artifacts/contracts/cross-chain-zkp/TokenA.sol/TokenA.json"
   ),
   "utf8"
 );

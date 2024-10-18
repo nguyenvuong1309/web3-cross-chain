@@ -21,7 +21,6 @@ import type {
   TypedEvent,
   TypedListener,
   OnEvent,
-  PromiseOrValue,
 } from "../../../common";
 
 export interface IERC5267Interface extends utils.Interface {

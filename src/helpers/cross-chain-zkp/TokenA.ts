@@ -30,9 +30,6 @@ export async function BurnToken( numberToken: string) {
         const amountToBurn = ethers.utils.parseUnits(numberToken, 18);
     
         const tokenA = new ethers.Contract(tokenAAddress, TokenAfactory.abi, wallet);
-        const balance = await tokenA.balanceOf(await wallet.getAddress());
-        console.log(balance);
-        return;
         const burnTx = await tokenA.burn(amountToBurn);
         console.log("Burning TokenA, transaction hash:", burnTx.hash);
         await burnTx.wait();

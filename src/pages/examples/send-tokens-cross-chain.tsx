@@ -21,9 +21,7 @@ const SendToken: NextPage = () => {
   return (
     <div>
       <Button
-        width={"200px"}
-        height={"70px"}
-        backgroundColor={"green"}
+        style={{ width: "200px", height: "70px", backgroundColor: "green" }}
         onClick={() => {
           SendTokenCrossChain();
         }}>

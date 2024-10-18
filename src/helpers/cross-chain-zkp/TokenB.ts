@@ -3,9 +3,9 @@ import { TokenB__factory as TokenBfactory } from "../../../src/types/factories/c
 
 export async function MintToken( numberToken: string) {
     try{
-        const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_MOONBEAM_RPC ||"https://rpc.api.moonbase.moonbeam.network" );
+        const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_MOONBEAM_RPC || "");
         const wallet = new ethers.Wallet(process.env.NEXT_PUBLIC_EVM_PRIVATE_KEY || "", provider);
-        const tokenBAddress = process.env.NEXT_PUBLIC_TOKEN_B_CONTRACT_ADDRESS || "0xF600c00F00b96854cF64bac8b872ebC75b5D49eB";
+        const tokenBAddress = process.env.NEXT_PUBLIC_TOKEN_B_CONTRACT_ADDRESS || "";
         const amountToMint = ethers.utils.parseUnits(numberToken, 18);
 
         const tokenB = new ethers.Contract(tokenBAddress, TokenBfactory.abi, wallet);

@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { TokenA__factory as TokenAfactory } from "../../../src/types/factories/contracts/zkp-samechain";
-// import dotenv from 'dotenv';
-// dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 export async function mintAndBridge() {
     const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_FANTOM_RPC);
@@ -24,8 +24,7 @@ export async function mintAndBridge() {
     const sendDataTx = await tokenA.sendData(recipient, 
         amountToSend,
         {
-            // value: ethers.utils.parseEther("0.001"),
-            gasLimit: 5000000
+            gasLimit: ethers.utils.hexlify(1000000)
         }
     );
     console.log("Sending data to TokenBridge, transaction hash:", sendDataTx.hash);

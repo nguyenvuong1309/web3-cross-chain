@@ -48,4 +48,5 @@ export async function deploy_bridgeA_2_kava() {
   
     saveAddressToEnv(source_token_smart_contract_deployed.address,"NEXT_PUBLIC_BRIDGE_A_KAVA_CONTRACT_ADDRESS");
     return source_token_smart_contract_deployed;
-  }
+}
+

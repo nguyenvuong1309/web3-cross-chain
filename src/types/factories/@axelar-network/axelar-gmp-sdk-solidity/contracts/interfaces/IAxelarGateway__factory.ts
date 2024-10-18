@@ -309,6 +309,19 @@ const _abi = [
     inputs: [
       {
         indexed: true,
+        internalType: "bytes32",
+        name: "commandId",
+        type: "bytes32",
+      },
+    ],
+    name: "ContractCallExecuted",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
         internalType: "address",
         name: "sender",
         type: "address",
@@ -507,57 +520,6 @@ const _abi = [
   },
   {
     inputs: [],
-    name: "adminEpoch",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "epoch",
-        type: "uint256",
-      },
-    ],
-    name: "adminThreshold",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "epoch",
-        type: "uint256",
-      },
-    ],
-    name: "admins",
-    outputs: [
-      {
-        internalType: "address[]",
-        name: "",
-        type: "address[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "allTokensFrozen",
     outputs: [
       {
@@ -636,6 +598,19 @@ const _abi = [
     name: "callContractWithToken",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "contractId",
+    outputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32",
+      },
+    ],
+    stateMutability: "pure",
     type: "function",
   },
   {
@@ -847,7 +822,7 @@ const _abi = [
     inputs: [
       {
         internalType: "bytes",
-        name: "params",
+        name: "data",
         type: "bytes",
       },
     ],

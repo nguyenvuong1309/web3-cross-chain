@@ -7,8 +7,7 @@ const deployerPrivateKey = process.env
 const kavaContractAddress = process.env
   .NEXT_PUBLIC_BRIDGE_B_KAVA_CONTRACT_ADDRESS as string;
 const moonbeamContractAddress = process.env
-  .NEXT_PUBLIC_BRIDGE_B_MOONBEAM_CONTRACT_ADDRESS || "0x6431F06DC42444c0131219a69E0eE50C117D83C4";
-
+  .NEXT_PUBLIC_BRIDGE_B_MOONBEAM_CONTRACT_ADDRESS as string;
 // Transfer tokens : Fantom -> Kava
 export async function sendData(message: string) {
   try {

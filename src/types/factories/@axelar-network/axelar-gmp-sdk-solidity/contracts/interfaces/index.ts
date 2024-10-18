@@ -7,6 +7,8 @@ export { IAxelarGateway__factory } from "./IAxelarGateway__factory";
 export { IContractIdentifier__factory } from "./IContractIdentifier__factory";
 export { IERC20__factory } from "./IERC20__factory";
 export { IGovernable__factory } from "./IGovernable__factory";
+export { IImplementation__factory } from "./IImplementation__factory";
+export { IInterchainGasEstimation__factory } from "./IInterchainGasEstimation__factory";
 export { IOwnable__factory } from "./IOwnable__factory";
 export { IProxy__factory } from "./IProxy__factory";
 export { IUpgradable__factory } from "./IUpgradable__factory";

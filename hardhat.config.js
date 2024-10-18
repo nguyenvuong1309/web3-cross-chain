@@ -16,6 +16,21 @@ module.exports = {
       {
         version: "0.8.6"
       },
+      {
+        version: "0.7.4"
+      },
+      {
+        version: "0.5.10",
+      },
+      {
+        version: "0.4.24", 
+      },
+      {
+        version: "0.8.0"
+      },
+      {
+        version: "0.8.20",
+      },
     ],
     settings: {
       evmVersion: process.env.EVM_VERSION || "london",
